@@ -796,6 +796,23 @@
     "preferOffline": {
       "description": "Bypass staleness checks for cached data. Missing data will still be requested from the server.",
       "type": "boolean"
+    },
+    "trustPolicy": {
+      "description": "When set to no-downgrade, pnpm will fail if a package's trust level has decreased compared to previous releases. For example, if a package was previously published by a trusted publisher but now only has provenance or no trust evidence, installation will fail. This helps prevent installing potentially compromised versions.",
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": ["off", "no-downgrade"]
+        }
+      ]
+    },
+    "trustPolicyExclude": {
+      "description": "You can now list one or more specific packages or versions that pnpm should allow to install, even if those packages don't satisfy the trust policy requirement.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
     }
   },
   "additionalProperties": false
